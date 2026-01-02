@@ -1,0 +1,62 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes slide { 0% { transform: translateX(-20px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+      .frame1 { animation: fadeIn 0.5s ease-in-out; }
+      .frame2 { animation: fadeIn 0.5s ease-in-out 1s forwards; opacity: 0; }
+      .frame3 { animation: fadeIn 0.5s ease-in-out 2s forwards; opacity: 0; }
+      .frame4 { animation: fadeIn 0.5s ease-in-out 3s forwards; opacity: 0; }
+      .frame5 { animation: fadeIn 0.5s ease-in-out 4s forwards; opacity: 0; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f9fafb"/>
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#2563eb"/>
+  <text x="20" y="40" font-size="24" font-weight="bold" fill="white">✨ LuminaCV</text>
+  
+  <!-- Frame 1: Personal Info -->
+  <g class="frame1">
+    <text x="40" y="100" font-size="18" font-weight="bold" fill="#111827">Personal Information</text>
+    <rect x="40" y="120" width="350" height="40" fill="white" stroke="#e5e7eb" stroke-width="2" rx="4"/>
+    <text x="50" y="150" font-size="14" fill="#6b7280">Sarah Johnson</text>
+  </g>
+  
+  <!-- Frame 2: Experience -->
+  <g class="frame2">
+    <text x="40" y="200" font-size="18" font-weight="bold" fill="#111827">Experience</text>
+    <rect x="40" y="220" width="350" height="60" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" rx="4"/>
+    <text x="50" y="245" font-size="14" font-weight="bold" fill="#111827">Senior Software Engineer</text>
+    <text x="50" y="268" font-size="12" fill="#6b7280">Led team of 5, shipped 10+ features</text>
+  </g>
+  
+  <!-- Frame 3: Preview -->
+  <g class="frame3">
+    <rect x="420" y="100" width="340" height="400" fill="white" stroke="#e5e7eb" stroke-width="2" rx="4"/>
+    <text x="440" y="130" font-size="16" font-weight="bold" fill="#111827">Sarah Johnson</text>
+    <text x="440" y="155" font-size="12" fill="#6b7280">sarah@example.com | (555) 123-4567</text>
+    <line x1="420" y1="170" x2="760" y2="170" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="440" y="200" font-size="14" font-weight="bold" fill="#111827">Experience</text>
+    <text x="440" y="225" font-size="12" fill="#111827">Senior Software Engineer</text>
+  </g>
+  
+  <!-- Frame 4: Settings -->
+  <g class="frame4">
+    <circle cx="700" cy="50" r="25" fill="#10b981"/>
+    <text x="690" y="58" font-size="20">⚙️</text>
+    <text x="40" y="350" font-size="14" fill="#10b981" font-weight="bold">✓ Settings Applied</text>
+  </g>
+  
+  <!-- Frame 5: Export -->
+  <g class="frame5">
+    <circle cx="100" cy="500" r="20" fill="#3b82f6"/>
+    <text x="95" y="510" font-size="16">📥</text>
+    <text x="130" y="510" font-size="14" fill="#111827">Resume exported as PDF</text>
+  </g>
+  
+  <!-- Animation indicator -->
+  <text x="400" y="580" font-size="12" fill="#9ca3af" text-anchor="middle">LuminaCV Demo - Features in action</text>
+</svg>

@@ -18,5 +18,7 @@
   ],
   "author": "Chiraag Kakar",
   "license": "MIT",
-  "dependencies": {}
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
 }

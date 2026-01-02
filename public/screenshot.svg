@@ -1,0 +1,150 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .header { fill: #2563eb; }
+      .title { font-size: 32px; font-weight: bold; fill: white; }
+      .subtitle { font-size: 16px; fill: #9ca3af; }
+      .section-title { font-size: 20px; font-weight: bold; fill: #111827; }
+      .label { font-size: 14px; fill: #6b7280; }
+      .input { fill: white; stroke: #e5e7eb; stroke-width: 2; }
+      .panel { fill: white; stroke: #e5e7eb; stroke-width: 2; }
+      .button { fill: #3b82f6; }
+      .button-text { font-size: 14px; fill: white; font-weight: 600; }
+      .preview-text { font-size: 13px; fill: #111827; }
+      .green { fill: #10b981; }
+      .icon { font-size: 18px; }
+    </style>
+  </defs>
+
+  <!-- Main Background -->
+  <rect width="1200" height="800" fill="#f9fafb"/>
+
+  <!-- Header -->
+  <rect width="1200" height="80" class="header"/>
+  <text x="30" y="50" class="title">✨ LuminaCV</text>
+  <text x="30" y="70" class="subtitle">Build your resume with style</text>
+
+  <!-- Toolbar -->
+  <g>
+    <rect x="30" y="100" width="1140" height="50" fill="white" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    
+    <!-- Buttons -->
+    <g>
+      <rect x="40" y="110" width="80" height="30" class="button" rx="4"/>
+      <text x="80" y="130" class="button-text" text-anchor="middle">📥 Export</text>
+      
+      <rect x="130" y="110" width="80" height="30" class="button" rx="4"/>
+      <text x="170" y="130" class="button-text" text-anchor="middle">🔗 Share</text>
+      
+      <rect x="220" y="110" width="80" height="30" class="button" rx="4"/>
+      <text x="260" y="130" class="button-text" text-anchor="middle">⚙️ Settings</text>
+      
+      <rect x="310" y="110" width="80" height="30" class="button" rx="4"/>
+      <text x="350" y="130" class="button-text" text-anchor="middle">📊 Stats</text>
+    </g>
+  </g>
+
+  <!-- Main Content Area -->
+  <g>
+    <!-- Left Editor Panel -->
+    <g>
+      <rect x="30" y="170" width="550" height="600" class="panel" rx="6"/>
+      
+      <!-- Personal Info Section -->
+      <g>
+        <text x="50" y="200" class="section-title">Personal Information</text>
+        
+        <!-- Name Input -->
+        <text x="50" y="230" class="label">Full Name</text>
+        <rect x="50" y="240" width="510" height="35" class="input" rx="4"/>
+        <text x="60" y="265" class="preview-text">John Doe</text>
+        
+        <!-- Email Input -->
+        <text x="50" y="295" class="label">Email</text>
+        <rect x="50" y="305" width="510" height="35" class="input" rx="4"/>
+        <text x="60" y="330" class="preview-text">john@example.com</text>
+      </g>
+      
+      <!-- Experience Section -->
+      <g>
+        <text x="50" y="385" class="section-title">Experience</text>
+        
+        <rect x="50" y="400" width="510" height="80" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2" rx="4"/>
+        <text x="60" y="425" class="preview-text" font-weight="bold">Senior Software Engineer</text>
+        <text x="60" y="445" class="label">Tech Startup | 2022 - Present</text>
+        <text x="60" y="465" class="label">Led team of 5 engineers, shipped 10+ features</text>
+      </g>
+      
+      <!-- Add Button -->
+      <rect x="50" y="510" width="510" height="40" fill="none" stroke="#10b981" stroke-width="2" rx="4" stroke-dasharray="5,5"/>
+      <text x="305" y="540" class="label" text-anchor="middle" fill="#10b981">+ Add Entry</text>
+    </g>
+
+    <!-- Right Preview Panel -->
+    <g>
+      <rect x="620" y="170" width="550" height="600" class="panel" rx="6"/>
+      
+      <!-- Preview Content -->
+      <g>
+        <text x="640" y="210" font-size="28" font-weight="bold" fill="#111827">John Doe</text>
+        <text x="640" y="235" class="label">john@example.com</text>
+        
+        <line x1="640" y1="250" x2="1150" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+        
+        <text x="640" y="285" font-size="16" font-weight="bold" fill="#111827">Experience</text>
+        <text x="640" y="310" class="preview-text" font-weight="bold">Senior Software Engineer</text>
+        <text x="640" y="330" class="label">Tech Startup | 2022 - Present</text>
+        <text x="640" y="350" class="label">Led team of 5 engineers, shipped 10+ features</text>
+        
+        <line x1="640" y1="370" x2="1150" y2="370" stroke="#e5e7eb" stroke-width="1"/>
+        
+        <text x="640" y="405" font-size="16" font-weight="bold" fill="#111827">Skills</text>
+        <text x="640" y="430" class="label">JavaScript, React, Node.js, PostgreSQL</text>
+      </g>
+      
+      <!-- Watermark -->
+      <text x="895" y="750" class="subtitle" text-anchor="middle" font-size="12">
+        Real-time Preview
+      </text>
+    </g>
+  </g>
+
+  <!-- Feature Badges -->
+  <g>
+    <g>
+      <circle cx="70" cy="790" r="15" class="green"/>
+      <text x="70" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="100" y="798" class="label" font-size="12">Live Preview</text>
+    </g>
+    
+    <g>
+      <circle cx="280" cy="790" r="15" class="green"/>
+      <text x="280" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="310" y="798" class="label" font-size="12">Export to PDF</text>
+    </g>
+    
+    <g>
+      <circle cx="490" cy="790" r="15" class="green"/>
+      <text x="490" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="520" y="798" class="label" font-size="12">Share via URL</text>
+    </g>
+    
+    <g>
+      <circle cx="700" cy="790" r="15" class="green"/>
+      <text x="700" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="730" y="798" class="label" font-size="12">WCAG 2.1 AA</text>
+    </g>
+    
+    <g>
+      <circle cx="910" cy="790" r="15" class="green"/>
+      <text x="910" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="940" y="798" class="label" font-size="12">Keyboard Nav</text>
+    </g>
+    
+    <g>
+      <circle cx="1100" cy="790" r="15" class="green"/>
+      <text x="1100" y="795" font-size="20" text-anchor="middle">✓</text>
+      <text x="1130" y="798" class="label" font-size="12">Auto-save</text>
+    </g>
+  </g>
+</svg>
