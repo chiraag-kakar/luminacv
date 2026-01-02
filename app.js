@@ -17,6 +17,9 @@
     // Apply saved settings/theme
     settingsManager._applyTheme();
     
+    // Initialize keyboard shortcuts
+    shortcuts.init();
+    
     // Render initial UI
     renderUI();
     

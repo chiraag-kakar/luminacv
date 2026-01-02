@@ -30,6 +30,8 @@
         <button onclick="exportFunctions.exportPDF(state.data.cv)">🖨 Export PDF</button>
         <button onclick="shareFunctions.generateShareURL(state.data.cv)">🔗 Share</button>
         <button onclick="settingsManager.openSettingsModal()">⚙️ Settings</button>
+        <button onclick="stats.displayStats()" class="stats-btn">📊 Stats</button>
+        <button onclick="shortcuts.showHelp()" class="help-btn">❓ Help</button>
       </div>
       <div class="editor-sections">
         <!-- Personal Info -->
@@ -121,6 +123,7 @@
   <script src="js/features/share.js"></script>
   <script src="js/features/formatter.js"></script>
   <script src="js/features/settings.js"></script>
+  <script src="js/features/stats.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
