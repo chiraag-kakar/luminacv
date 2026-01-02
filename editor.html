@@ -3,127 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LuminaCV - Resume Builder</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2310b981'/><line x1='20' y1='30' x2='80' y2='30' stroke='white' stroke-width='4'/><line x1='20' y1='50' x2='80' y2='50' stroke='white' stroke-width='4'/><line x1='20' y1='70' x2='80' y2='70' stroke='white' stroke-width='4'/></svg>">
+  <title>LuminaCV - Build Your Resume</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2322c55e' rx='20' width='100' height='100'/%3E%3Cpath fill='white' d='M30 25h40v8H30zM30 40h35v6H30zM30 52h30v6H30zM30 64h25v6H30z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Modular CSS - imports all stylesheets -->
   <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
-  <div id="app">
-    <header class="app-header">
-      <div class="header-content">
-        <div class="header-branding">
-          <h1>✨ LuminaCV</h1>
-          <p>Build your resume with style</p>
-        </div>
-        <nav class="header-nav">
-          <button class="nav-btn" onclick="location.href='/'">Home</button>
-          <button class="nav-btn" onclick="location.href='https://github.com/chiraag-kakar/luminacv'" target="_blank">GitHub</button>
-        </nav>
-      </div>
-    </header>
-
-    <div class="container">
-      <div class="editor-panel">
-      <div class="editor-toolbar" role="toolbar" aria-label="Resume editor actions">
-        <button onclick="exportFunctions.exportJSON(state.data.cv)" aria-label="Export resume as JSON file" title="Shift+E">📥 Export JSON</button>
-        <button onclick="exportFunctions.exportMarkdown(state.data.cv)" aria-label="Export resume as Markdown" title="Download">📥 Export MD</button>
-        <button onclick="exportFunctions.exportPDF(state.data.cv)" aria-label="Export resume as PDF via print dialog" title="Ctrl+E / Cmd+E">🖨 Export PDF</button>
-        <button onclick="shareFunctions.generateShareURL(state.data.cv)" aria-label="Generate shareable URL with resume data" title="Shift+S">🔗 Share</button>
-        <button onclick="settingsManager.openSettingsModal()" aria-label="Open settings for customization" title="Comma">⚙️ Settings</button>
-        <button onclick="stats.displayStats()" class="stats-btn" aria-label="View resume statistics" title="View stats">📊 Stats</button>
-        <button onclick="shortcuts.showHelp()" class="help-btn" aria-label="Show keyboard shortcuts and help" title="Slash">❓ Help</button>
-      </div>
-      <div class="editor-sections">
-        <!-- Personal Info -->
-        <div class="editor-section" id="personal-section">
-          <h3>Personal Information</h3>
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="John Doe" aria-label="Enter your full name" aria-required="true" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="john@example.com" aria-label="Enter your email address" aria-required="true" />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" placeholder="(555) 123-4567" aria-label="Enter your phone number" />
-          </div>
-          <div class="form-group">
-            <label for="linkedin">LinkedIn</label>
-            <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" aria-label="Enter your LinkedIn profile URL" />
-          </div>
-          <div class="form-group">
-            <label for="github">GitHub</label>
-            <input type="url" id="github" placeholder="github.com/johndoe" aria-label="Enter your GitHub profile URL" />
-          </div>
-        </div>
-
-        <!-- Experience -->
-        <div class="editor-section" id="experience-section">
-          <div class="section-header">
-            <h3>Experience</h3>
-            <button class="btn-add" onclick="addExperienceEntry()">+ Add</button>
-          </div>
-          <div id="experience-list"></div>
-        </div>
-
-        <!-- Education -->
-        <div class="editor-section" id="education-section">
-          <div class="section-header">
-            <h3>Education</h3>
-            <button class="btn-add" onclick="addEducationEntry()">+ Add</button>
-          </div>
-          <div id="education-list"></div>
-        </div>
-
-        <!-- Skills -->
-        <div class="editor-section" id="skills-section">
-          <h3>Skills</h3>
-          <div class="form-group">
-            <label for="languages">Languages</label>
-            <textarea id="languages" placeholder="JavaScript, Python, Java" rows="2" aria-label="Enter programming languages"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="frameworks">Frameworks & Libraries</label>
-            <textarea id="frameworks" placeholder="React, Node.js, Django" rows="2" aria-label="Enter frameworks and libraries"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="tools">Tools & Platforms</label>
-            <textarea id="tools" placeholder="Git, Docker, AWS" rows="2" aria-label="Enter tools and platforms"></textarea>
-          </div>
-        </div>
-
-        <!-- Projects -->
-        <div class="editor-section" id="projects-section">
-          <div class="section-header">
-            <h3>Projects</h3>
-            <button class="btn-add" onclick="addProjectEntry()">+ Add</button>
-          </div>
-          <div id="projects-list"></div>
-        </div>
-      </div>
-      
-      <div class="preview-panel">
-        <div id="preview" class="preview-content"></div>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/core/utils.js"></script>
-  <script src="js/core/state.js"></script>
-  <script src="js/core/modal.js"></script>
-  <script src="js/core/icons.js"></script>
-  <script src="js/data/templates.js"></script>
-  <script src="js/data/defaults.js"></script>
-  <script src="js/features/entries.js"></script>
-  <script src="js/features/editor.js"></script>
-  <script src="js/features/export.js"></script>
-  <script src="js/features/import.js"></script>
-  <script src="js/features/share.js"></script>
-  <script src="js/features/formatter.js"></script>
-  <script src="js/features/settings.js"></script>
-  <script src="js/features/stats.js"></script>
+  <div id="app"></div>
   <script src="app.js"></script>
 </body>
 </html>

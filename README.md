@@ -73,16 +73,41 @@ npm run serve          # Start local server
 
 ## Architecture
 
-Modular JavaScript with no external dependencies:
+**Production Mode**: Single bundled `app.js` (107KB) for optimal performance.
 
 ```
-js/
-├── core/       # State, modal, utils, icons
-├── data/       # Templates, defaults
-└── features/   # Export, import, share, formatter
+Development (/js/)          Bundle          Production
+─────────────────────    ─────────────    ───────────
+15+ modular files    →   node bundle.js  →  app.js
+                                              (107KB)
 ```
 
-See [DOCUMENTATION.md](DOCUMENTATION.md) for complete architecture and [ACCESSIBILITY.md](ACCESSIBILITY.md) for A11y details.
+**Why bundled?**
+- ✅ 1 HTTP request vs 15+
+- ✅ No script loading order issues
+- ✅ Faster page load
+- ✅ Production-ready
+
+**Development workflow:**
+```bash
+# Edit modular files in /js/
+vim js/features/export.js
+
+# Bundle for production
+node bundle.js  # or npm run build
+
+# Test
+npm run serve
+```
+
+**Full details**: See [DOCUMENTATION.md](DOCUMENTATION.md) for:
+- Development vs Production modes
+- Bundling process step-by-step
+- localStorage structure
+- Data flow diagrams
+- Module dependencies
+
+**Accessibility**: See [ACCESSIBILITY.md](ACCESSIBILITY.md) for WCAG 2.1 Level AA compliance details.
 
 ## Export Formats
 

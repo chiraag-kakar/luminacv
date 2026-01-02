@@ -1,95 +1,390 @@
-/* CV Document Styling */
-.cv-content {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-primary);
+/**
+ * CV Document Styles - The actual resume preview
+ */
+
+.cv-doc {
+  background: white;
+  color: black;
+  max-width: 8.5in;
+  min-height: 11in;
+  margin: 0 auto;
+  padding: 0.5in 0.5in;
+  font-family: var(--font-family, 'Lato', 'Calibri', 'Arial', 'Helvetica Neue', sans-serif);
+  font-size: 10pt;
+  line-height: 1.15;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .cv-header {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid var(--primary-color);
   text-align: center;
+  margin-bottom: 8pt;
+  padding-bottom: 4pt;
 }
 
-.cv-header h1 {
-  margin: 0 0 10px 0;
-  font-size: 26px;
+.cv-name {
+  font-size: 20pt;
   font-weight: 700;
-  color: var(--primary-color);
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  word-spacing: 0.1em;
 }
 
 .cv-contact {
+  font-size: 9pt;
+  color: #000;
+  margin-top: 4pt;
+  letter-spacing: 0.02em;
   display: flex;
-  gap: 15px;
-  justify-content: center;
   flex-wrap: wrap;
-  font-size: 12px;
-  color: var(--text-secondary);
+  justify-content: center;
+  gap: 8pt;
 }
 
-.cv-contact span {
-  display: inline-block;
+.cv-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 2pt;
+  white-space: nowrap;
+}
+
+.cv-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10pt;
+  height: 10pt;
+  flex-shrink: 0;
+  color: #000;
+}
+
+.cv-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2.5;
+}
+
+.cv-contact a {
+  color: #000;
+  text-decoration: none;
+}
+
+.cv-contact a:hover {
+  text-decoration: underline;
 }
 
 .cv-section {
-  margin-bottom: 20px;
+  margin-bottom: 10pt;
 }
 
-.cv-section h2 {
-  margin: 15px 0 10px 0;
-  font-size: 16px;
+.cv-section-title {
+  font-size: 10pt;
   font-weight: 700;
-  color: var(--primary-color);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-bottom: 1pt;
+  margin-bottom: 6pt;
+  border-bottom: 0.5pt solid #000;
+  word-spacing: 0.15em;
 }
 
 .cv-entry {
+  margin-bottom: 8pt;
+}
+
+.cv-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0pt;
+}
+
+.cv-entry-title {
+  font-weight: 700;
+  font-size: 10pt;
+  flex: 1;
+}
+
+.cv-entry-subtitle {
+  font-size: 9pt;
+  font-style: italic;
+  color: #333;
+  flex: 1;
+}
+
+.cv-entry-meta {
+  font-size: 9pt;
+  color: #222;
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 8pt;
+  min-width: 80pt;
+}
+
+.cv-bullets {
+  margin: 4pt 0 0 1.2em;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.cv-bullets li {
+  font-size: 9pt;
+  margin-bottom: 2pt;
+  padding-left: 0.1em;
+  line-height: 1.2;
+}
+
+.cv-tech {
+  font-size: 8pt;
+  font-style: italic;
+  color: #444;
+  margin-top: 2pt;
+}
+
+.cv-links {
+  display: flex;
+  gap: 12pt;
+  margin-top: 2pt;
+  margin-bottom: 3pt;
+  font-size: 8pt;
+}
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2pt;
+  color: #0066cc;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cv-link:hover {
+  text-decoration: underline;
+}
+
+.cv-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8pt;
+  height: 8pt;
+  color: #0066cc;
+  flex-shrink: 0;
+}
+
+.cv-link-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2.5;
+}
+
+.cv-skills-row {
+  font-size: 9pt;
+  margin-bottom: 3pt;
+  line-height: 1.3;
+}
+
+.cv-skills-row strong {
+  font-weight: 700;
+}
+
+/* Template Variants */
+
+/* Modern Template */
+.cv-doc.template-modern .cv-header {
+  text-align: center;
+  border-bottom: 3px solid var(--template-color);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.cv-doc.template-modern .cv-contact {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cv-doc.template-modern .cv-section-title {
+  color: var(--template-color);
+  border-bottom: 2px solid var(--template-color);
+  display: inline-block;
+  padding-bottom: 4px;
   margin-bottom: 12px;
-  page-break-inside: avoid;
 }
 
-.entry-title {
+/* Classic Template */
+.cv-doc.template-classic .cv-header {
+  text-align: left;
+  border-bottom: 1px solid #1f2937;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.cv-doc.template-classic .cv-name {
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.cv-doc.template-classic .cv-contact {
+  justify-content: flex-start;
+}
+
+.cv-doc.template-classic .cv-section-title {
+  color: #1f2937;
+  border-bottom: 1px solid #1f2937;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+}
+
+.cv-doc.template-classic .cv-entry-title {
   font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 3px;
 }
 
-.entry-subtitle {
+/* Minimal Template */
+.cv-doc.template-minimal .cv-header {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.cv-doc.template-minimal .cv-name {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cv-doc.template-minimal .cv-contact {
+  justify-content: flex-start;
   font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 5px;
+}
+
+.cv-doc.template-minimal .cv-contact-item {
+  gap: 4px;
+}
+
+.cv-doc.template-minimal .cv-icon {
+  display: none;
+}
+
+.cv-doc.template-minimal .cv-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  border: none;
+}
+
+.cv-doc.template-minimal .cv-entry {
+  padding-left: 0;
+  border-left: none;
+}
+
+.cv-doc.template-minimal .cv-bullets {
+  margin-left: 16px;
+}
+
+/* SWE Template - Matches Overleaf SWE Resume Template */
+.cv-doc.template-swe .cv-header {
+  text-align: center;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+  border: none;
+}
+
+.cv-doc.template-swe .cv-name {
+  font-size: 28px;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.cv-doc.template-swe .cv-contact {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.cv-doc.template-swe .cv-contact-item {
+  gap: 4px;
+}
+
+.cv-doc.template-swe .cv-contact-item a {
+  text-decoration: underline;
+}
+
+.cv-doc.template-swe .cv-section {
+  margin-bottom: 10px;
+}
+
+.cv-doc.template-swe .cv-section-title {
+  font-size: 13px;
+  font-variant: small-caps;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.cv-doc.template-swe .cv-entry {
+  margin-bottom: 8px;
+  padding-left: 0;
+  border: none;
+}
+
+.cv-doc.template-swe .cv-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.cv-doc.template-swe .cv-entry-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cv-doc.template-swe .cv-entry-subtitle {
+  font-size: 12px;
   font-style: italic;
 }
 
-.cv-section ul {
-  margin: 8px 0;
-  padding-left: 20px;
+.cv-doc.template-swe .cv-entry-meta {
+  font-size: 11px;
+  font-style: italic;
+  color: #333;
 }
 
-.cv-section li {
-  margin-bottom: 4px;
-  font-size: 13px;
+.cv-doc.template-swe .cv-bullets {
+  margin: 4px 0 0 18px;
+  font-size: 11px;
 }
 
-.cv-section p {
-  margin: 5px 0;
-  font-size: 13px;
+.cv-doc.template-swe .cv-bullets li {
+  margin-bottom: 2px;
 }
 
-/* Print styles */
-@media print {
-  body {
-    background: white;
-  }
-  
-  .preview-panel {
-    padding: 0;
-  }
-  
-  .preview-content {
-    box-shadow: none;
-    padding: 20px;
-  }
+.cv-doc.template-swe .cv-tech {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.cv-doc.template-swe .cv-skills-row {
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.cv-doc.template-swe .cv-links {
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.cv-doc.template-swe .cv-link {
+  margin-right: 8px;
 }

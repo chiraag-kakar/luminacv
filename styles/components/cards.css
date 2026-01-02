@@ -1,0 +1,112 @@
+/**
+ * Card Components - Entry cards for experience, education, projects
+ */
+
+.entry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+}
+
+.entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.entry-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.entry-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.entry-subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.entry-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.entry-content {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border);
+  display: none;
+}
+
+.entry-card.expanded .entry-content {
+  display: block;
+}
+
+.entry-card .chevron {
+  transition: transform var(--transition-normal);
+  color: var(--text-dim);
+}
+
+.entry-card.expanded .chevron {
+  transform: rotate(180deg);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Bullet Points */
+.bullet-list {
+  margin-top: var(--spacing-sm);
+}
+
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  flex-direction: column;
+}
+
+.bullet-item > div:last-child {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.bullet-marker {
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1.5;
+  flex-shrink: 0;
+  margin-top: var(--spacing-sm);
+}
+
+.bullet-item .form-textarea {
+  min-height: 60px;
+  flex: 1;
+}
+
+.bullet-item .btn-icon {
+  padding: 6px;
+  flex-shrink: 0;
+  margin-top: 6px;
+}

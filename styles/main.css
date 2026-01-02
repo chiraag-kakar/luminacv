@@ -1,132 +1,35 @@
-/* Root Variables */
-:root {
-  --primary-color: #2563eb;
-  --accent-color: #10b981;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+/**
+ * LuminaCV - Main Stylesheet
+ * 
+ * This file imports all modular CSS files in the correct order.
+ * Import this single file in your HTML to get all styles.
+ */
 
-/* Imports */
-@import 'components/modal.css';
-@import 'components/formatter.css';
-@import 'components/editor.css';
-@import 'features/cv-document.css';
-@import 'features/settings.css';
-@import 'features/a11y.css';
-@import 'layout/header.css';
+/* Base Styles - Load first */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/typography.css';
 
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Components - Reusable UI elements */
+@import './components/buttons.css';
+@import './components/forms.css';
+@import './components/cards.css';
+@import './components/modal.css';
+@import './components/dropdown.css';
+@import './components/tabs.css';
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  line-height: 1.5;
-}
+/* Layout - Page structure */
+@import './layout/header.css';
+@import './layout/editor.css';
+@import './layout/preview.css';
+@import './layout/resizer.css';
 
-/* Layout */
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* Features - Specific functionality */
+@import './features/cv-document.css';
+@import './features/formatter.css';
+@import './features/stats.css';
+@import './features/settings.css';
 
-.header {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  color: white;
-  padding: 20px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.header h1 {
-  font-size: 28px;
-  margin-bottom: 5px;
-}
-
-.header p {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.container {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-.editor-panel {
-  flex: 1;
-  padding: 20px;
-  background: var(--bg-primary);
-  border-right: 1px solid var(--border-color);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.editor-toolbar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.editor-toolbar button {
-  padding: 10px 15px;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.editor-toolbar button:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-}
-
-.editor-sections {
-  flex: 1;
-  overflow-y: auto;
-}
-
-.preview-panel {
-  flex: 1;
-  padding: 20px;
-  background: var(--bg-secondary);
-  overflow-y: auto;
-}
-
-.preview-content {
-  background: var(--bg-primary);
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  min-height: 100%;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  .editor-panel {
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-}
+/* Utilities - Print and responsive */
+@import './utilities/print.css';
+@import './utilities/responsive.css';

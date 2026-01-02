@@ -1,146 +1,192 @@
-/* Settings Modal & Customization */
-.settings-form {
+/**
+ * Settings Modal - Theme and display settings
+ */
+
+.settings-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.settings-section h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.settings-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Template Grid */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.template-option {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-.settings-form .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.settings-form label {
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-
-.settings-form select,
-.settings-form input[type="color"] {
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: inherit;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
   cursor: pointer;
+  transition: all var(--transition-normal);
 }
 
-.settings-form select:focus,
-.settings-form input[type="color"]:focus {
+.template-option:hover {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.template-option.active {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.template-preview {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--radius-md);
+  opacity: 0.7;
+  transition: opacity var(--transition-normal);
+}
+
+.template-option.active .template-preview {
+  opacity: 1;
+}
+
+.template-option span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.template-option.active span {
+  color: var(--accent);
+}
+
+/* Font Selector */
+.settings-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.settings-select:hover,
+.settings-select:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
+/* Color Grid */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.color-option {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.color-option:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.color-option.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent), var(--shadow-md);
+}
+
+/* Color Picker */
 .color-picker-group {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: var(--spacing-md);
 }
 
-.color-picker-group input[type="color"] {
+.color-picker {
   width: 50px;
-  height: 40px;
+  height: 50px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  padding: 4px;
+  background: transparent;
 }
 
-.color-label {
-  font-family: 'Monaco', monospace;
+.color-picker:hover {
+  border-color: var(--accent);
+}
+
+.color-value {
+  font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--text-secondary);
-  flex: 1;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
-.settings-preview {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border-color);
+/* Section Order List */
+.section-order-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
-.settings-preview p {
-  margin: 0 0 10px 0;
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: grab;
+  transition: all var(--transition-normal);
+  user-select: none;
+}
+
+.order-item:hover {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: var(--accent);
+}
+
+.order-item.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.order-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.order-item span {
   font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.preview-box {
-  padding: 15px;
-  border-radius: 4px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  font-size: 13px;
-  color: var(--text-primary);
-}
-
-.preview-box h3 {
-  margin: 0 0 8px 0;
-  color: var(--primary-color);
-  font-size: 16px;
-}
-
-/* Template-specific styles */
-body.template-modern .cv-header {
-  text-align: center;
-  border-bottom: 2px solid var(--primary-color);
-}
-
-body.template-classic .cv-header {
-  text-align: left;
-  border-left: 4px solid var(--primary-color);
-  padding-left: 15px;
-}
-
-body.template-minimal .cv-header {
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 15px;
-}
-
-body.template-swe .cv-header {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  color: white;
-  padding: 20px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-body.template-swe .cv-header h1 {
-  color: white;
-  margin: 0;
-}
-
-body.template-swe .cv-header .cv-contact {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-body.template-swe .cv-section h2 {
-  background: var(--primary-color);
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  margin-top: 15px;
-}
-
-/* Font families */
-body.font-lato {
-  font-family: 'Lato', sans-serif;
-}
-
-body.font-calibri {
-  font-family: 'Calibri', sans-serif;
-}
-
-body.font-cambria {
-  font-family: 'Cambria', serif;
-}
-
-body.font-georgia {
-  font-family: 'Georgia', serif;
-}
-
-body.font-arial {
-  font-family: 'Arial', sans-serif;
+  font-weight: 500;
+  color: var(--text);
 }

@@ -1,0 +1,80 @@
+/**
+ * Responsive Styles - Mobile and tablet adaptations
+ */
+
+@media (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+  }
+  
+  .editor, .preview {
+    width: 100% !important;
+    height: 50%;
+  }
+  
+  .resizer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-text {
+    display: none;
+  }
+  
+  .template-switch {
+    display: none;
+  }
+  
+  .autosave span {
+    display: none;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .header-actions {
+    gap: var(--spacing-xs);
+  }
+  
+  .template-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .color-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .editor-header,
+  .preview-header {
+    padding: var(--spacing-md);
+  }
+  
+  .editor-content {
+    padding: var(--spacing-md);
+  }
+  
+  .preview-scroll {
+    padding: var(--spacing-md);
+  }
+  
+  .cv-doc {
+    padding: 0.25in;
+    font-size: 9pt;
+  }
+  
+  .cv-name {
+    font-size: 16pt;
+  }
+}

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuminaCV | ATS-Friendly Resume Builder</title>
+  <meta name="description" content="Create stunning, ATS-friendly resumes with our intuitive builder. Export to PDF, LaTeX, or share instantly. No signup required.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2322c55e' rx='20' width='100' height='100'/%3E%3Cpath fill='white' d='M30 25h40v8H30zM30 40h35v6H30zM30 52h30v6H30zM30 64h25v6H30z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #f7f5f0;
+      --bg-warm: #f0ebe3;
+      --surface: #ffffff;
+      --surface-warm: #faf8f5;
+      --border: #e5e0d8;
+      --border-light: #ebe7e0;
+      --text: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #7a7a7a;
+      --accent: #22c55e;
+      --accent-light: #4ade80;
+      --accent-dark: #16a34a;
+      --accent-glow: rgba(34, 197, 94, 0.25);
+      --accent-soft: #dcfce7;
+      --cream: #fefcf8;
+      --sage: #9ca88b;
+      --olive: #6b7a5e;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(247, 245, 240, 0.85);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    
+    .logo-mark::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+      border-radius: 9px;
+    }
+    
+    .logo-mark svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    .logo-text span {
+      color: var(--accent);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover { color: var(--text); }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 2px 8px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--bg-warm);
+      border-color: var(--border);
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Organic shapes background */
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--accent-soft);
+      top: -200px;
+      right: -100px;
+      animation: float-slow 25s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 500px;
+      height: 500px;
+      background: #fef3c7;
+      bottom: -100px;
+      left: -150px;
+      animation: float-slow 20s ease-in-out infinite reverse;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: #dbeafe;
+      top: 40%;
+      left: 20%;
+      animation: float-slow 22s ease-in-out infinite 5s;
+    }
+    
+    @keyframes float-slow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      animation: fade-up 0.6s ease-out;
+    }
+    
+    .hero-badge-icon {
+      width: 18px;
+      height: 18px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-badge-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--accent);
+    }
+    
+    .hero h1 {
+      font-size: clamp(44px, 7vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      animation: fade-up 0.6s ease-out 0.1s backwards;
+      color: var(--text);
+    }
+    
+    .hero h1 .highlight {
+      position: relative;
+      color: var(--accent-dark);
+    }
+    
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 4px;
+      height: 12px;
+      background: var(--accent-soft);
+      z-index: -1;
+      border-radius: 4px;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+      animation: fade-up 0.6s ease-out 0.2s backwards;
+      line-height: 1.7;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fade-up 0.6s ease-out 0.3s backwards;
+    }
+    
+    .hero-cta .btn-primary {
+      padding: 14px 32px;
+      font-size: 15px;
+      border-radius: 12px;
+    }
+    
+    .hero-cta .btn-primary svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .hero-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      animation: fade-up 0.6s ease-out 0.4s backwards;
+    }
+    
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Preview Section */
+    .preview-section {
+      padding: 0 24px 100px;
+      position: relative;
+    }
+    
+    .preview-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .preview-window {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 
+        0 0 0 1px rgba(0,0,0,0.02),
+        0 4px 8px rgba(0,0,0,0.04),
+        0 16px 48px rgba(0,0,0,0.08);
+    }
+    
+    .preview-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .preview-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .dot-red { background: #fca5a5; }
+    .dot-yellow { background: #fcd34d; }
+    .dot-green { background: #86efac; }
+    
+    .preview-titlebar span {
+      margin-left: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .preview-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    
+    .preview-editor {
+      padding: 28px;
+      border-right: 1px solid var(--border);
+      background: var(--surface-warm);
+    }
+    
+    .preview-cv {
+      padding: 28px;
+      background: white;
+    }
+    
+    /* Editor mockup styles */
+    .mock-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .mock-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+    }
+    
+    .mock-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .mock-tab {
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: transparent;
+      border-radius: 6px;
+    }
+    
+    .mock-tab.active {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+    
+    .mock-field {
+      margin-bottom: 14px;
+    }
+    
+    .mock-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    
+    .mock-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    
+    .mock-toolbar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    
+    .mock-toolbar-btn {
+      width: 28px;
+      height: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mock-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 80px;
+    }
+    
+    /* CV Preview mockup */
+    .cv-mock {
+      font-family: 'Georgia', serif;
+    }
+    
+    .cv-mock-name {
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+    
+    .cv-mock-contact {
+      font-size: 11px;
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .cv-mock-section {
+      margin-bottom: 16px;
+    }
+    
+    .cv-mock-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-dark);
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    
+    .cv-mock-entry {
+      margin-bottom: 12px;
+    }
+    
+    .cv-mock-entry-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    
+    .cv-mock-entry-title {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    
+    .cv-mock-entry-date {
+      color: #666;
+      font-style: italic;
+    }
+    
+    .cv-mock-entry-sub {
+      font-size: 11px;
+      color: #444;
+      font-style: italic;
+      margin: 2px 0;
+    }
+    
+    .cv-mock-bullet {
+      font-size: 11px;
+      color: #333;
+      padding-left: 12px;
+      position: relative;
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+    
+    .cv-mock-bullet::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 100px 24px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .feature-card {
+      padding: 28px;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent-dark);
+      fill: none;
+      stroke-width: 2;
+    }
+    
+    .feature-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* Export Section */
+    .export-section {
+      padding: 100px 24px;
+    }
+    
+    .export-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .export-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.25s;
+    }
+    
+    .export-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    
+    .export-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .export-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+    
+    .export-label {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+    }
+    
+    .export-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    
+    .cta-section p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    
+    .cta-section .btn-primary {
+      padding: 16px 40px;
+      font-size: 16px;
+      border-radius: 14px;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    
+    footer p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 16px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero {
+        padding: 120px 20px 60px;
+      }
+      
+      .preview-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .preview-editor {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .export-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>
+      </div>
+      <span class="logo-text">Lumina<span>CV</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#export">Export</a>
+      <a href="https://github.com/chiraag-kakar/luminacv" target="_blank">GitHub</a>
+      <a href="editor.html" class="btn btn-primary">Start Building</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="hero-badge">
+      <div class="hero-badge-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <span>Free • No signup • Works offline</span>
+    </div>
+    
+    <h1>You deserve to be seen,<br><span class="highlight">not archived</span></h1>
+    
+    <p class="hero-subtitle">
+      Create professional, ATS-friendly resumes with our intuitive builder. 
+      Live preview, multiple templates, export anywhere.
+    </p>
+    
+    <div class="hero-cta">
+      <a href="editor.html" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Start Building
+      </a>
+      <a href="#features" class="btn btn-secondary">See how it works</a>
+    </div>
+    
+    <p class="hero-note">✨ Your data stays in your browser. Always.</p>
+  </section>
+
+  <section class="preview-section">
+    <div class="preview-container">
+      <div class="preview-window">
+        <div class="preview-titlebar">
+          <div class="preview-dot dot-red"></div>
+          <div class="preview-dot dot-yellow"></div>
+          <div class="preview-dot dot-green"></div>
+          <span>LuminaCV Editor</span>
+        </div>
+        <div class="preview-content">
+          <div class="preview-editor">
+            <div class="mock-header">
+              <div class="mock-logo"></div>
+              <span style="font-weight: 600; font-size: 14px; color: var(--text);">Edit Your CV</span>
+            </div>
+            <div class="mock-tabs">
+              <div class="mock-tab active">Personal</div>
+              <div class="mock-tab">Experience</div>
+              <div class="mock-tab">Education</div>
+              <div class="mock-tab">Skills</div>
+            </div>
+            <div class="mock-field">
+              <div class="mock-label">Full Name</div>
+              <div class="mock-input">Alex Johnson</div>
+            </div>
+            <div class="mock-field">
+              <div class="mock-label">Email</div>
+              <div class="mock-input">alex.johnson@email.com</div>
+            </div>
+            <div class="mock-field">
+              <div class="mock-label">Key Achievement</div>
+              <div class="mock-toolbar">
+                <div class="mock-toolbar-btn">B</div>
+                <div class="mock-toolbar-btn" style="font-style: italic;">I</div>
+                <div class="mock-toolbar-btn" style="text-decoration: underline;">U</div>
+              </div>
+              <div class="mock-textarea">**Architected** microservices using *Node.js*, reducing latency by __45%__</div>
+            </div>
+          </div>
+          <div class="preview-cv">
+            <div class="cv-mock">
+              <div class="cv-mock-name">ALEX JOHNSON</div>
+              <div class="cv-mock-contact">alex.johnson@email.com • +1 (555) 123-4567 • linkedin.com/in/alexjohnson</div>
+              
+              <div class="cv-mock-section">
+                <div class="cv-mock-section-title">Experience</div>
+                <div class="cv-mock-entry">
+                  <div class="cv-mock-entry-header">
+                    <span class="cv-mock-entry-title">Senior Software Engineer</span>
+                    <span class="cv-mock-entry-date">Jan 2022 - Present</span>
+                  </div>
+                  <div class="cv-mock-entry-sub">TechCorp Inc. • San Francisco, CA</div>
+                  <div class="cv-mock-bullet"><strong>Architected</strong> microservices using <em>Node.js</em>, reducing latency by <u>45%</u></div>
+                  <div class="cv-mock-bullet">Led team of 5 engineers in redesigning payment processing system</div>
+                </div>
+              </div>
+              
+              <div class="cv-mock-section">
+                <div class="cv-mock-section-title">Education</div>
+                <div class="cv-mock-entry">
+                  <div class="cv-mock-entry-header">
+                    <span class="cv-mock-entry-title">B.S. Computer Science</span>
+                    <span class="cv-mock-entry-date">Aug 2016 - May 2020</span>
+                  </div>
+                  <div class="cv-mock-entry-sub">University of California, Berkeley</div>
+                </div>
+              </div>
+              
+              <div class="cv-mock-section">
+                <div class="cv-mock-section-title">Skills</div>
+                <div style="font-size: 11px; color: #333;">
+                  <strong>Languages:</strong> JavaScript, TypeScript, Python, Go
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <div class="section-header">
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Features
+      </div>
+      <h2 class="section-title">Everything you need</h2>
+      <p class="section-subtitle">Built for developers and professionals who want a beautiful resume without the hassle.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="feature-title">Live Preview</h3>
+        <p class="feature-desc">See changes instantly as you type. No more switching between tabs or refreshing pages.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3 class="feature-title">Multiple Templates</h3>
+        <p class="feature-desc">Choose from Modern, Classic, Minimal, and SWE-style templates. Instant switching.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 class="feature-title">ATS-Friendly</h3>
+        <p class="feature-desc">Clean, parseable formatting that passes through Applicant Tracking Systems.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <h3 class="feature-title">Share Instantly</h3>
+        <p class="feature-desc">Generate a shareable link. Anyone with the link can view your resume—no account needed.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">Privacy First</h3>
+        <p class="feature-desc">Your data never leaves your browser. No servers, no tracking, no accounts.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3 class="feature-title">LaTeX Export</h3>
+        <p class="feature-desc">Export to LaTeX for academic positions. Matches the popular SWE resume template.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="export-section" id="export">
+    <div class="section-header">
+      <div class="section-label">Export</div>
+      <h2 class="section-title">Take it anywhere</h2>
+      <p class="section-subtitle">Export your resume in multiple formats for any situation.</p>
+    </div>
+    
+    <div class="export-grid">
+      <div class="export-item">
+        <div class="export-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div>
+          <div class="export-label">PDF</div>
+          <div class="export-sub">Print-ready document</div>
+        </div>
+      </div>
+      
+      <div class="export-item">
+        <div class="export-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div>
+          <div class="export-label">LaTeX</div>
+          <div class="export-sub">Academic & SWE style</div>
+        </div>
+      </div>
+      
+      <div class="export-item">
+        <div class="export-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </div>
+        <div>
+          <div class="export-label">Share Link</div>
+          <div class="export-sub">Instant sharing</div>
+        </div>
+      </div>
+      
+      <div class="export-item">
+        <div class="export-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div>
+          <div class="export-label">Markdown</div>
+          <div class="export-sub">Plain text format</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to build your resume?</h2>
+    <p>Join thousands who've landed interviews with LuminaCV.</p>
+    <a href="editor.html" class="btn btn-primary">
+      Start Building — It's Free
+    </a>
+  </section>
+
+  <footer>
+    <p>
+      Built with care by <a href="https://github.com/chiraag-kakar" target="_blank">Chiraag Kakar</a>. 
+      <a href="https://github.com/chiraag-kakar/luminacv" target="_blank">View on GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    // Check for shared CV URL and redirect to editor
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('cv') || urlParams.has('r')) {
+      window.location.href = 'editor.html' + window.location.search;
+    }
+  </script>
+</body>
+</html>
