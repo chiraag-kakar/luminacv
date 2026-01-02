@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "serve": "npx serve . -l 3000",
+    "record-demo": "node scripts/generate-demo.js http://localhost:3000 gif",
     "test": "node tests/run.js",
     "test:watch": "node tests/run.js --watch"
   },

@@ -9,10 +9,10 @@ Edit your resume with live preview. Export to PDF, JSON, or Markdown. Share via 
 ### User Interface
 ![LuminaCV Screenshot](./public/screenshot.svg)
 
-### Animation
-![LuminaCV Demo](./public/demo.svg)
+### Full Walkthrough
+![LuminaCV Demo](./public/demo.gif)
 
-**Live Application**: https://username.github.io/luminacv
+**Live Application**: https://chiraag-kakar.github.io/luminacv
 
 ## Features
 
