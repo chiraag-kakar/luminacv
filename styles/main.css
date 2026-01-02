@@ -15,6 +15,7 @@
 @import 'components/formatter.css';
 @import 'components/editor.css';
 @import 'features/cv-document.css';
+@import 'features/settings.css';
 
 /* Reset & Base */
 * {

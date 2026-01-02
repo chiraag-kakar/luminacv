@@ -14,6 +14,9 @@
     // Load data from storage
     state.loadFromStorage();
     
+    // Apply saved settings/theme
+    settingsManager._applyTheme();
+    
     // Render initial UI
     renderUI();
     
