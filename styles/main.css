@@ -16,6 +16,7 @@
 @import 'components/editor.css';
 @import 'features/cv-document.css';
 @import 'features/settings.css';
+@import 'layout/header.css';
 
 /* Reset & Base */
 * {
