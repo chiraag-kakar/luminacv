@@ -28,7 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: 'npm'
       
       - name: Install dependencies
         run: npm ci
@@ -51,7 +50,7 @@ jobs:
           cp DOCUMENTATION.md dist/
       
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
       
