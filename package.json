@@ -1,0 +1,21 @@
+{
+  "name": "luminacv",
+  "version": "1.0.0",
+  "description": "Browser-based resume builder. No backend, no accounts.",
+  "main": "app.js",
+  "scripts": {
+    "serve": "npx serve . -l 3000",
+    "record-demo": "node scripts/record-demo.js http://localhost:3000 gif",
+    "replace-demo": "./scripts/replace-demo.sh http://localhost:3000"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "builder",
+    "export",
+    "pdf"
+  ],
+  "author": "Chiraag Kakar",
+  "license": "MIT",
+  "dependencies": {}
+}
