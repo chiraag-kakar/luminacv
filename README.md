@@ -2,30 +2,35 @@
 
 > **Create professional resumes in minutes. Zero friction, zero tracking.**
 
-A privacy-first resume builder that runs entirely in your browser. No sign-ups, no servers, no data collection—just you and your resume. Edit with live preview, export to multiple formats, and share via URL with data embedded directly in the link.
+Privacy-first resume builder running entirely in your browser. No sign-ups, no servers, no data collection. Edit with live preview, export to multiple formats, share via URL with embedded data.
 
-**Why LuminaCV?**
-- 🔒 **Complete Privacy** — Your data never leaves your browser
-- ⚡ **Instant Results** — Real-time preview as you type
-- 🎨 **Professional Templates** — Modern, Classic, Minimal, and SWE designs
-- 📤 **Flexible Export** — PDF, JSON, or Markdown in one click
-- 🔗 **Zero-Server Sharing** — Share via URL, no database required
+**Live Demo**: https://chiraag-kakar.github.io/luminacv
 
-
-### Product Walkthrough
 ![LuminaCV Demo](./public/demo.gif)
 
-**Live Application**: https://chiraag-kakar.github.io/luminacv
+## Why LuminaCV?
 
-## Features
+**For Job Seekers & Professionals:**
+- 🔒 **Complete Privacy** — Your data never leaves your browser
+- ⚡ **Real-time Preview** — See changes instantly as you type
+- 🎨 **Professional Templates** — 4 industry-standard designs
+- 📤 **Multiple Export Formats** — PDF, JSON, Markdown in one click
+- 🔗 **Zero-Server Sharing** — Share via URL, no account required
 
-- ✅ **Real-time preview** as you type
-- ✅ **Export formats** — PDF, JSON, Markdown
-- ✅ **URL sharing** with embedded data (no server needed)
-- ✅ **Markdown import** — Paste markdown, auto-parse to CV
-- ✅ **Text formatting** — Bold, italic, underline, links
-- ✅ **localStorage persistence** — Auto-save on changes
-- ✅ **Modular architecture** — Clean, maintainable code
+**For Engineering Managers & Technical Recruiters:**
+- Built with modern vanilla JavaScript (no framework bloat)
+- WCAG 2.1 Level AA accessibility compliant
+- 50+ Playwright E2E tests across Chrome/Firefox/Safari
+- GitHub Actions CI/CD with automated deployment
+- 107KB single-bundle architecture for optimal performance
+- 100% client-side — zero backend infrastructure costs
+
+**For Open Source Contributors:**
+- Clean, modular codebase (`/js/` folder structure)
+- Comprehensive test coverage with Playwright
+- Well-documented architecture (see [DOCUMENTATION.md](DOCUMENTATION.md))
+- MIT licensed — fork freely
+- Active maintenance and feature roadmap
 
 ## Quick Start
 
@@ -34,111 +39,88 @@ git clone https://github.com/chiraag-kakar/luminacv.git
 cd luminacv
 npm install
 npm run serve
+# Open http://localhost:3000
 ```
 
-Open `http://localhost:3000/editor.html`
+## Key Features
 
-## Development
+**Resume Building:**
+- Real-time live preview
+- 5 sections: Personal, Experience, Education, Skills, Projects
+- Rich text formatting (bold, italic, underline, links)
+- Auto-save to localStorage (100ms debounce)
 
-```bash
-npm run build          # Bundle and minify assets
-npm test               # Run unit tests
-npx playwright test    # Run E2E tests
-npm run serve          # Start local server
+**Import/Export:**
+- Export: PDF (print), JSON (backup), Markdown (version control)
+- Import: Paste markdown → auto-parsed resume
+- Share: Generate URL with embedded data (no server needed)
+
+**Customization:**
+- 4 Templates: Modern, Classic, Minimal, SWE
+- Color themes, fonts, backgrounds
+- Statistics dashboard (word count, section analysis)
+
+**Developer Experience:**
+- 10+ keyboard shortcuts for power users
+- Modular architecture with production bundler
+- Comprehensive E2E and unit tests
+- Automated CI/CD pipeline
+
+## Architecture Highlights
+
+**Production:** Single bundled `app.js` (107KB)
+```
+/js/ (15+ modules) → node bundle.js → app.js (1 file, 1 HTTP request)
 ```
 
-## Features Breakdown
-
-### Core Features
-- **Real-time Preview** - Live update as you type
-- **Export to PDF** - Browser print dialog
-- **Export to JSON** - Complete data backup
-- **Export to Markdown** - Version-control friendly format
-- **Import from Markdown** - Auto-parse resume files
-- **URL Sharing** - No server, data in URL params
-- **Auto-save** - 100ms debounced localStorage
-
-### UI/UX
-- **5 Resume Sections** - Personal, Experience, Education, Skills, Projects
-- **Text Formatting** - Bold, italic, underline, links toolbar
-- **4 Templates** - Modern, Classic, Minimal, SWE
-- **Customization** - Colors, fonts, backgrounds
-- **Statistics** - Word count, character count, section stats
-- **Keyboard Shortcuts** - 10+ shortcuts for power users
-
-### Quality
-- **WCAG 2.1 Level AA** - Full accessibility compliance
-- **Keyboard Navigation** - Tab, Enter, Escape support
-- **ARIA Labels** - Screen reader friendly
-- **Mobile Responsive** - Works on all devices
-- **E2E Tests** - 50+ test cases, multi-browser
-- **GitHub Actions** - Auto-test, build, deploy
-
-## Architecture
-
-**Production Mode**: Single bundled `app.js` (107KB) for optimal performance.
-
-```
-Development (/js/)          Bundle          Production
-─────────────────────    ─────────────    ───────────
-15+ modular files    →   node bundle.js  →  app.js
-                                              (107KB)
-```
-
-**Why bundled?**
-- ✅ 1 HTTP request vs 15+
+**Why it matters:**
+- ✅ Faster page loads (1 request vs 15+)
 - ✅ No script loading order issues
-- ✅ Faster page load
-- ✅ Production-ready
+- ✅ Production-ready out of the box
 
 **Development workflow:**
-```bash
-# Edit modular files in /js/
-vim js/features/export.js
+1. Edit modular files in `/js/` directory
+2. Run `npm run build` to bundle
+3. Test with `npm run serve`
 
-# Bundle for production
-node bundle.js  # or npm run build
+See [DOCUMENTATION.md](DOCUMENTATION.md) for detailed architecture, development setup, and contribution guidelines.
 
-# Test
-npm run serve
-```
+## Quality Assurance
 
-**Full details**: See [DOCUMENTATION.md](DOCUMENTATION.md) for:
-- Development vs Production modes
-- Bundling process step-by-step
-- localStorage structure
-- Data flow diagrams
-- Module dependencies
+| Metric | Status |
+|--------|--------|
+| **Accessibility** | WCAG 2.1 Level AA ✅ |
+| **E2E Tests** | 50+ scenarios (Playwright) ✅ |
+| **Browser Support** | Chrome, Firefox, Safari ✅ |
+| **Mobile Responsive** | Full support ✅ |
+| **CI/CD** | GitHub Actions automated ✅ |
+| **Keyboard Navigation** | Full support + shortcuts ✅ |
 
-**Accessibility**: See [ACCESSIBILITY.md](ACCESSIBILITY.md) for WCAG 2.1 Level AA compliance details.
+## Technology Stack
 
-## Export Formats
+**Core:** Vanilla JavaScript (ES6+), HTML5, CSS3  
+**Testing:** Playwright (E2E), Custom test framework  
+**Build:** Custom Node.js bundler  
+**CI/CD:** GitHub Actions (test, build, deploy)  
+**Hosting:** GitHub Pages (zero-cost)
 
-| Format | Use Case |
-|--------|----------|
-| **PDF** | Print-ready via browser print |
-| **JSON** | Data backup and portability |
-| **Markdown** | Version control friendly |
+## Contributing
 
-## Sharing
+We welcome contributions! See [DOCUMENTATION.md](DOCUMENTATION.md) for:
+- Development environment setup
+- Code architecture and patterns
+- Testing guidelines
+- Pull request process
 
-Click "Share" to generate a URL:
-```
-https://example.com/editor.html?cv=<encoded-data>
-```
+**Good first issues:** Check GitHub issues labeled `good-first-issue`
 
-Recipients see read-only preview. No database—data lives in the URL.
+## Project Status
 
-## Development Journey
-
-See the project evolution in git history:
-
-```bash
-git log --oneline
-```
-
-Each commit represents a complete feature phase, showing how the product was built incrementally.
+✅ **Production Ready**  
+🔄 **Active Maintenance**  
+📅 **Last Updated:** January 2026  
+🌐 **Deployment:** https://chiraag-kakar.github.io/luminacv
 
 ## License
 
-MIT
+MIT — Use freely for personal or commercial projects.
