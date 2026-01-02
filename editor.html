@@ -16,7 +16,81 @@
     
     <div class="container">
       <div class="editor-panel">
-        <textarea id="editor" placeholder="Start editing your resume..."></textarea>
+      <div class="editor-toolbar">
+        <button onclick="exportFunctions.exportJSON(state.data.cv)">📥 Export JSON</button>
+        <button onclick="exportFunctions.exportMarkdown(state.data.cv)">📥 Export MD</button>
+        <button onclick="exportFunctions.exportPDF(state.data.cv)">🖨 Export PDF</button>
+        <button onclick="shareFunctions.generateShareURL(state.data.cv)">🔗 Share</button>
+      </div>
+      <div class="editor-sections">
+        <!-- Personal Info -->
+        <div class="editor-section" id="personal-section">
+          <h3>Personal Information</h3>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullName" placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="john@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567" />
+          </div>
+          <div class="form-group">
+            <label>LinkedIn</label>
+            <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" />
+          </div>
+          <div class="form-group">
+            <label>GitHub</label>
+            <input type="url" id="github" placeholder="github.com/johndoe" />
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="editor-section" id="experience-section">
+          <div class="section-header">
+            <h3>Experience</h3>
+            <button class="btn-add" onclick="addExperienceEntry()">+ Add</button>
+          </div>
+          <div id="experience-list"></div>
+        </div>
+
+        <!-- Education -->
+        <div class="editor-section" id="education-section">
+          <div class="section-header">
+            <h3>Education</h3>
+            <button class="btn-add" onclick="addEducationEntry()">+ Add</button>
+          </div>
+          <div id="education-list"></div>
+        </div>
+
+        <!-- Skills -->
+        <div class="editor-section" id="skills-section">
+          <h3>Skills</h3>
+          <div class="form-group">
+            <label>Languages</label>
+            <textarea id="languages" placeholder="JavaScript, Python, Java" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Frameworks & Libraries</label>
+            <textarea id="frameworks" placeholder="React, Node.js, Django" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tools & Platforms</label>
+            <textarea id="tools" placeholder="Git, Docker, AWS" rows="2"></textarea>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="editor-section" id="projects-section">
+          <div class="section-header">
+            <h3>Projects</h3>
+            <button class="btn-add" onclick="addProjectEntry()">+ Add</button>
+          </div>
+          <div id="projects-list"></div>
+        </div>
       </div>
       
       <div class="preview-panel">
@@ -25,6 +99,18 @@
     </div>
   </div>
 
+  <script src="js/core/utils.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/modal.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/data/templates.js"></script>
+  <script src="js/data/defaults.js"></script>
+  <script src="js/features/entries.js"></script>
+  <script src="js/features/editor.js"></script>
+  <script src="js/features/export.js"></script>
+  <script src="js/features/import.js"></script>
+  <script src="js/features/share.js"></script>
+  <script src="js/features/formatter.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
