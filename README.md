@@ -1,15 +1,18 @@
 # LuminaCV
 
-Browser-based resume builder. No backend, no accounts.
+> **Create professional resumes in minutes. Zero friction, zero tracking.**
 
-Edit your resume with live preview. Export to PDF, JSON, or Markdown. Share via URL—data is encoded in the link itself, no server storage.
+A privacy-first resume builder that runs entirely in your browser. No sign-ups, no servers, no data collection—just you and your resume. Edit with live preview, export to multiple formats, and share via URL with data embedded directly in the link.
 
-## Demo
+**Why LuminaCV?**
+- 🔒 **Complete Privacy** — Your data never leaves your browser
+- ⚡ **Instant Results** — Real-time preview as you type
+- 🎨 **Professional Templates** — Modern, Classic, Minimal, and SWE designs
+- 📤 **Flexible Export** — PDF, JSON, or Markdown in one click
+- 🔗 **Zero-Server Sharing** — Share via URL, no database required
 
-### User Interface
-![LuminaCV Screenshot](./public/screenshot.svg)
 
-### Full Walkthrough
+### Product Walkthrough
 ![LuminaCV Demo](./public/demo.gif)
 
 **Live Application**: https://chiraag-kakar.github.io/luminacv
