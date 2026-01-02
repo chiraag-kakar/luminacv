@@ -8,29 +8,18 @@ Privacy-first resume builder running entirely in your browser. No sign-ups, no s
 
 ![LuminaCV Demo](./public/demo.gif)
 
-## Why LuminaCV?
+## Features
 
-**For Job Seekers & Professionals:**
 - 🔒 **Complete Privacy** — Your data never leaves your browser
 - ⚡ **Real-time Preview** — See changes instantly as you type
 - 🎨 **Professional Templates** — 4 industry-standard designs
-- 📤 **Multiple Export Formats** — PDF, JSON, Markdown in one click
+- 📤 **Multiple Exports** — PDF, JSON, Markdown in one click
 - 🔗 **Zero-Server Sharing** — Share via URL, no account required
-
-**For Engineering Managers & Technical Recruiters:**
-- Built with modern vanilla JavaScript (no framework bloat)
-- WCAG 2.1 Level AA accessibility compliant
-- 50+ Playwright E2E tests across Chrome/Firefox/Safari
-- GitHub Actions CI/CD with automated deployment
-- 107KB single-bundle architecture for optimal performance
-- 100% client-side — zero backend infrastructure costs
-
-**For Open Source Contributors:**
-- Clean, modular codebase (`/js/` folder structure)
-- Comprehensive test coverage with Playwright
-- Well-documented architecture (see [DOCUMENTATION.md](DOCUMENTATION.md))
-- MIT licensed — fork freely
-- Active maintenance and feature roadmap
+- ⌨️ **Keyboard Shortcuts** — 10+ shortcuts for power users
+- ♿ **Fully Accessible** — WCAG 2.1 Level AA compliant
+- 📱 **Mobile Responsive** — Works on all devices
+- ⚙️ **100% Client-Side** — No backend infrastructure needed
+- 🧪 **Well-Tested** — 50+ E2E scenarios across browsers
 
 ## Quick Start
 
@@ -66,24 +55,26 @@ npm run serve
 - Comprehensive E2E and unit tests
 - Automated CI/CD pipeline
 
-## Architecture Highlights
+## Technical Overview
 
-**Production:** Single bundled `app.js` (107KB)
-```
-/js/ (15+ modules) → node bundle.js → app.js (1 file, 1 HTTP request)
-```
+**Architecture:**
+- Vanilla JavaScript (ES6+) with no framework dependencies
+- Custom bundler produces single 107KB artifact from 15+ modular sources
+- Client-side only architecture—zero server infrastructure required
+- Modular development with `/js/` source compiled via `node bundle.js`
 
-**Why it matters:**
-- ✅ Faster page loads (1 request vs 15+)
-- ✅ No script loading order issues
-- ✅ Production-ready out of the box
+**Quality & Testing:**
+- 50+ Playwright E2E test scenarios across Chrome, Firefox, Safari
+- WCAG 2.1 Level AA accessibility compliance
+- GitHub Actions CI/CD for automated testing and deployment
+- Comprehensive keyboard navigation and screen reader support
 
 **Development workflow:**
 1. Edit modular files in `/js/` directory
 2. Run `npm run build` to bundle
 3. Test with `npm run serve`
 
-See [DOCUMENTATION.md](DOCUMENTATION.md) for detailed architecture, development setup, and contribution guidelines.
+See [DOCUMENTATION.md](DOCUMENTATION.md) for detailed architecture and development setup.
 
 ## Quality Assurance
 
@@ -104,23 +95,9 @@ See [DOCUMENTATION.md](DOCUMENTATION.md) for detailed architecture, development 
 **CI/CD:** GitHub Actions (test, build, deploy)  
 **Hosting:** GitHub Pages (zero-cost)
 
-## Contributing
-
-We welcome contributions! See [DOCUMENTATION.md](DOCUMENTATION.md) for:
-- Development environment setup
-- Code architecture and patterns
-- Testing guidelines
-- Pull request process
-
-**Good first issues:** Check GitHub issues labeled `good-first-issue`
-
 ## Project Status
 
 ✅ **Production Ready**  
 🔄 **Active Maintenance**  
 📅 **Last Updated:** January 2026  
 🌐 **Deployment:** https://chiraag-kakar.github.io/luminacv
-
-## License
-
-MIT — Use freely for personal or commercial projects.

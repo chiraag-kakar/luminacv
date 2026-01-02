@@ -180,7 +180,7 @@ node bundle.js        # Creates app.js from /js/*
 
 ---
 
-## For Open Source Contributors
+## Development Guide
 
 ### Getting Started
 
@@ -319,27 +319,13 @@ npx playwright test --grep accessibility
 # Tests keyboard nav, ARIA labels, focus management
 ```
 
-### Contributing Guidelines
+### Code Style Guidelines
 
-**Pull Request Process:**
-1. Fork repo and create feature branch
-2. Make changes, update tests
-3. Run `npm run build` (commit updated app.js)
-4. Ensure all tests pass
-5. Submit PR with clear description
-
-**Code Style:**
+**Standards:**
 - Use ES6+ features (const/let, arrow functions)
 - Comment complex logic
 - Follow existing naming conventions
 - Keep functions small and focused
-
-**Good First Issues:**
-- Add new resume template
-- Improve export formatting
-- Add keyboard shortcut
-- Enhance accessibility
-- Write additional tests
 
 ### CI/CD Details
 
@@ -437,8 +423,4 @@ All workflows use `workflow_dispatch` (manual trigger from Actions tab):
 - **Location:** Browser localStorage
 - **Auto-save:** 100ms debounced on every change
 
----
 
-## License
-
-MIT License — Free for personal and commercial use.
