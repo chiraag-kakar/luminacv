@@ -24,38 +24,38 @@
 
     <div class="container">
       <div class="editor-panel">
-      <div class="editor-toolbar">
-        <button onclick="exportFunctions.exportJSON(state.data.cv)">📥 Export JSON</button>
-        <button onclick="exportFunctions.exportMarkdown(state.data.cv)">📥 Export MD</button>
-        <button onclick="exportFunctions.exportPDF(state.data.cv)">🖨 Export PDF</button>
-        <button onclick="shareFunctions.generateShareURL(state.data.cv)">🔗 Share</button>
-        <button onclick="settingsManager.openSettingsModal()">⚙️ Settings</button>
-        <button onclick="stats.displayStats()" class="stats-btn">📊 Stats</button>
-        <button onclick="shortcuts.showHelp()" class="help-btn">❓ Help</button>
+      <div class="editor-toolbar" role="toolbar" aria-label="Resume editor actions">
+        <button onclick="exportFunctions.exportJSON(state.data.cv)" aria-label="Export resume as JSON file" title="Shift+E">📥 Export JSON</button>
+        <button onclick="exportFunctions.exportMarkdown(state.data.cv)" aria-label="Export resume as Markdown" title="Download">📥 Export MD</button>
+        <button onclick="exportFunctions.exportPDF(state.data.cv)" aria-label="Export resume as PDF via print dialog" title="Ctrl+E / Cmd+E">🖨 Export PDF</button>
+        <button onclick="shareFunctions.generateShareURL(state.data.cv)" aria-label="Generate shareable URL with resume data" title="Shift+S">🔗 Share</button>
+        <button onclick="settingsManager.openSettingsModal()" aria-label="Open settings for customization" title="Comma">⚙️ Settings</button>
+        <button onclick="stats.displayStats()" class="stats-btn" aria-label="View resume statistics" title="View stats">📊 Stats</button>
+        <button onclick="shortcuts.showHelp()" class="help-btn" aria-label="Show keyboard shortcuts and help" title="Slash">❓ Help</button>
       </div>
       <div class="editor-sections">
         <!-- Personal Info -->
         <div class="editor-section" id="personal-section">
           <h3>Personal Information</h3>
           <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="fullName" placeholder="John Doe" />
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="John Doe" aria-label="Enter your full name" aria-required="true" />
           </div>
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="email" placeholder="john@example.com" />
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="john@example.com" aria-label="Enter your email address" aria-required="true" />
           </div>
           <div class="form-group">
-            <label>Phone</label>
-            <input type="tel" id="phone" placeholder="(555) 123-4567" />
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567" aria-label="Enter your phone number" />
           </div>
           <div class="form-group">
-            <label>LinkedIn</label>
-            <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" />
+            <label for="linkedin">LinkedIn</label>
+            <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" aria-label="Enter your LinkedIn profile URL" />
           </div>
           <div class="form-group">
-            <label>GitHub</label>
-            <input type="url" id="github" placeholder="github.com/johndoe" />
+            <label for="github">GitHub</label>
+            <input type="url" id="github" placeholder="github.com/johndoe" aria-label="Enter your GitHub profile URL" />
           </div>
         </div>
 
@@ -81,16 +81,16 @@
         <div class="editor-section" id="skills-section">
           <h3>Skills</h3>
           <div class="form-group">
-            <label>Languages</label>
-            <textarea id="languages" placeholder="JavaScript, Python, Java" rows="2"></textarea>
+            <label for="languages">Languages</label>
+            <textarea id="languages" placeholder="JavaScript, Python, Java" rows="2" aria-label="Enter programming languages"></textarea>
           </div>
           <div class="form-group">
-            <label>Frameworks & Libraries</label>
-            <textarea id="frameworks" placeholder="React, Node.js, Django" rows="2"></textarea>
+            <label for="frameworks">Frameworks & Libraries</label>
+            <textarea id="frameworks" placeholder="React, Node.js, Django" rows="2" aria-label="Enter frameworks and libraries"></textarea>
           </div>
           <div class="form-group">
-            <label>Tools & Platforms</label>
-            <textarea id="tools" placeholder="Git, Docker, AWS" rows="2"></textarea>
+            <label for="tools">Tools & Platforms</label>
+            <textarea id="tools" placeholder="Git, Docker, AWS" rows="2" aria-label="Enter tools and platforms"></textarea>
           </div>
         </div>
 

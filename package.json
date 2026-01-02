@@ -4,11 +4,10 @@
   "description": "Browser-based resume builder. No backend, no accounts.",
   "main": "app.js",
   "scripts": {
-    "build": "node bundle.js",
+    "build": "node build.js",
     "serve": "npx serve . -l 3000",
     "test": "node tests/run.js",
-    "record-demo": "node scripts/record-demo.js http://localhost:3000 gif",
-    "replace-demo": "./scripts/replace-demo.sh http://localhost:3000"
+    "test:watch": "node tests/run.js --watch"
   },
   "keywords": [
     "resume",
