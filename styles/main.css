@@ -12,6 +12,7 @@
 
 /* Imports */
 @import 'components/modal.css';
+@import 'components/formatter.css';
 
 /* Reset & Base */
 * {
