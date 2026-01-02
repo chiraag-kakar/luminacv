@@ -1,0 +1,72 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+      
+      - name: Check JavaScript quality
+        run: |
+          echo "## Code Quality Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for console.log statements
+          console_logs=$(grep -r "console\.log" js/ 2>/dev/null | grep -v "test" | wc -l)
+          echo "- Console.log statements: $console_logs" >> $GITHUB_STEP_SUMMARY
+          
+          # Check file structure
+          js_files=$(find js -name '*.js' | wc -l)
+          echo "- JavaScript files: $js_files" >> $GITHUB_STEP_SUMMARY
+          
+          # Check CSS organization
+          css_files=$(find styles -name '*.css' | wc -l)
+          echo "- CSS files: $css_files" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Verify documentation
+        run: |
+          echo "## Documentation Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          [ -f README.md ] && echo "- ✓ README.md" >> $GITHUB_STEP_SUMMARY || echo "- ✗ README.md" >> $GITHUB_STEP_SUMMARY
+          [ -f DOCUMENTATION.md ] && echo "- ✓ DOCUMENTATION.md" >> $GITHUB_STEP_SUMMARY || echo "- ✗ DOCUMENTATION.md" >> $GITHUB_STEP_SUMMARY
+          [ -f ACCESSIBILITY.md ] && echo "- ✓ ACCESSIBILITY.md" >> $GITHUB_STEP_SUMMARY || echo "- ✗ ACCESSIBILITY.md" >> $GITHUB_STEP_SUMMARY
+          [ -f package.json ] && echo "- ✓ package.json" >> $GITHUB_STEP_SUMMARY || echo "- ✗ package.json" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Check build output
+        run: |
+          echo "## Build Verification" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f build.js ]; then
+            echo "- ✓ Build script found (build.js)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ✗ Build script missing" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Security check
+        run: |
+          echo "## Security Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for hardcoded secrets
+          secrets=$(grep -r "api[_-]key\|password\|secret" . --include="*.js" --include="*.html" 2>/dev/null | grep -v node_modules | wc -l)
+          echo "- Potential secrets found: $secrets" >> $GITHUB_STEP_SUMMARY
+          
+          # Check dependencies
+          echo "- Dependencies: Check package.json for vulnerabilities" >> $GITHUB_STEP_SUMMARY
+          echo "- Recommendation: Run 'npm audit' locally" >> $GITHUB_STEP_SUMMARY
